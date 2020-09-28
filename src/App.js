@@ -1,8 +1,13 @@
 import React, { Component } from "react";
+import Routes from "./routes/Routes";
 
 export class App extends Component {
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <Routes />
+      </div>
+    );
   }
 }
 
