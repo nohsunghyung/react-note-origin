@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
 // 헤더
-export class AppHeader extends Component {
+class AppHeader extends Component {
   render() {
     return (
       <header>

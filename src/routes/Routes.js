@@ -7,7 +7,7 @@ import ErrorPage from "../pages/ErrorPage";
 import MainPage from "../pages/MainPage";
 import ListWrite from "../pages/ListWrite";
 
-export class Routes extends Component {
+class Routes extends Component {
   render() {
     return (
       <Router>

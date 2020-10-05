@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export class ListWrite extends Component {
+class ListWrite extends Component {
   render() {
     return (
       <div className="contents">
@@ -27,9 +27,9 @@ export class ListWrite extends Component {
             <button type="submit" className="btn">
               등록
             </button>
-            <a href="javascript:;" className="btn outline">
+            <button type="button" className="btn outline">
               취소
-            </a>
+            </button>
           </form>
           {/* <p className="log" v-if="logState">
             게시물이 이미 존재합니다.
