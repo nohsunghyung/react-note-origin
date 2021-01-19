@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
-class ErrorPage extends Component {
+export class ErrorPage extends Component {
   render() {
-    return <div>404에러</div>;
+    return <div>404 error</div>;
   }
 }
 

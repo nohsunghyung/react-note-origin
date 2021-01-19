@@ -2,49 +2,40 @@ import React, { Component } from "react";
 import Api from "../utils/Api";
 import history from "../utils/history";
 
-class Login extends Component {
+export class Login extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       username: "",
-      password: "",
+      password: ""
     };
   }
-  // input 값 변경함수
   onChangeValue = (e) => {
     const name = e.target.name;
     const value = e.target.value;
 
     this.setState({
-      [name]: value,
+      [name]: value
     });
   };
+
+  // 로그인 버튼 클릭
   login = () => {
     const { username, password } = this.state;
-    const apiParams = {
-      username,
-      password,
+    const apiparams = {
+      username: username,
+      password: password
     };
-    Api.post("login", apiParams)
-      .then((res) => {
-        // 사용자의 토큰
-        const token = res.data.token;
-        // 부모컴포넌트에 token값 전달
+    Api.post("login", apiparams)
+      .then((response) => {
+        const token = response.data.token;
         this.props.login(token);
-        alert(
-          `${res.data.user.username}님 반갑습니다. 메인화면으로 이동합니다.`
-        );
-        // 페이지 이동을 위한 path 변경
+        const username = response.data.user.username;
+        alert(`${username}님 반가워용! 메인으로 이동할게유`);
         history.push("/main");
       })
-      .catch((error) => {
-        alert(`${error.response.data}. 재시도 해주세요`);
-        this.setState({
-          username: "",
-          password: "",
-        });
-      });
+      .catch((error) => console.log(error));
+    // axios를 이용하여 로그인 정보를 전달하고 응답값을 받아온다.
   };
   render() {
     const { username, password } = this.state;
@@ -58,10 +49,10 @@ class Login extends Component {
                 <label htmlFor="username">id:</label>
                 <input
                   id="username"
-                  name="username"
                   type="text"
-                  onChange={this.onChangeValue}
+                  name="username"
                   value={username}
+                  onChange={this.onChangeValue}
                 />
               </div>
               <div>
@@ -70,15 +61,14 @@ class Login extends Component {
                   id="password"
                   type="password"
                   name="password"
-                  onChange={this.onChangeValue}
                   value={password}
+                  onChange={this.onChangeValue}
                 />
               </div>
+              <button type="button" className="btn" onClick={this.login}>
+                로그인
+              </button>
             </div>
-            <button type="button" className="btn" onClick={this.login}>
-              로그인
-            </button>
-
             <p className="log"></p>
           </div>
         </div>

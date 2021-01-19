@@ -1,22 +1,46 @@
 import React, { Component } from "react";
 import AppHeader from "./components/AppHeader";
 import { Route, Switch } from "react-router-dom";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+import LoginPage from "./pages/LoginPage";
+import SingupPage from "./pages/SingupPage";
 import ErrorPage from "./pages/ErrorPage";
+import MainPage from "./pages/MainPage";
+import history from "./utils/history";
 
 class App extends Component {
-  login = () => {
-    console.log("로그인");
+  constructor(props) {
+    super(props);
+    this.state = {
+      token: ""
+    };
+  }
+  login = (token) => {
+    console.log(token, "받아땅");
+    this.setState({
+      token: token
+    });
+  };
+
+  logout = () => {
+    console.log("하하하");
+    this.setState({
+      token: ""
+    });
+    history.push("/login");
   };
   render() {
     return (
       <div>
-        <AppHeader />
+        <AppHeader token={this.state.token} logout={this.logout} />
         <Switch>
-          <Route exact path={["/", "/login"]} render={() => <Login />}></Route>
-          <Route exact path="/signup" component={Signup}></Route>
-          <Route path="*" component={ErrorPage}></Route>
+          <Route
+            exact
+            path={["/", "/login"]}
+            render={(props) => <LoginPage {...props} login={this.login} />}
+          ></Route>
+          <Route exact path="/signup" component={SingupPage}></Route>
+          <Route exact path="/main" component={MainPage}></Route>
+          <Route exact path="*" component={ErrorPage}></Route>
         </Switch>
       </div>
     );

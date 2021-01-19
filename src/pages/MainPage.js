@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
-class MainPage extends Component {
+export class MainPage extends Component {
   render() {
     return (
       <div>
