@@ -11,20 +11,18 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      token: ""
+      token: "",
     };
   }
   login = (token) => {
-    console.log(token, "받아땅");
     this.setState({
-      token: token
+      token: token,
     });
   };
 
   logout = () => {
-    console.log("하하하");
     this.setState({
-      token: ""
+      token: "",
     });
     history.push("/login");
   };

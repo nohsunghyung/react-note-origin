@@ -8,7 +8,6 @@ export class AppHeader extends Component {
 
   render() {
     const { token, logout } = this.props;
-    console.log(this.props.token, "token");
     return (
       <header>
         <div>
