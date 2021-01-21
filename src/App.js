@@ -6,24 +6,29 @@ import SingupPage from "./pages/SingupPage";
 import ErrorPage from "./pages/ErrorPage";
 import MainPage from "./pages/MainPage";
 import history from "./utils/history";
+import WritePage from "./pages/WritePage";
+import UpdatePage from "./pages/UpdatePage";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      token: "",
+      // 새로고침해도 토큰값 로컬스토리지에서 받아옴
+      token: localStorage.getItem("token") || ""
     };
   }
   login = (token) => {
     this.setState({
-      token: token,
+      token: token
     });
+    localStorage.getItem("token");
   };
 
   logout = () => {
     this.setState({
-      token: "",
+      token: ""
     });
+    localStorage.removeItem("token");
     history.push("/login");
   };
   render() {
@@ -38,6 +43,8 @@ class App extends Component {
           ></Route>
           <Route exact path="/signup" component={SingupPage}></Route>
           <Route exact path="/main" component={MainPage}></Route>
+          <Route exact path="/write" component={WritePage}></Route>
+          <Route exact path="/update/:noteId" component={UpdatePage}></Route>
           <Route exact path="*" component={ErrorPage}></Route>
         </Switch>
       </div>

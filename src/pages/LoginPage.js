@@ -7,7 +7,7 @@ export class Login extends Component {
     super(props);
     this.state = {
       username: "",
-      password: "",
+      password: ""
     };
   }
   onChangeValue = (e) => {
@@ -15,7 +15,7 @@ export class Login extends Component {
     const value = e.target.value;
 
     this.setState({
-      [name]: value,
+      [name]: value
     });
   };
 
@@ -24,14 +24,13 @@ export class Login extends Component {
     const { username, password } = this.state;
     const apiparams = {
       username: username,
-      password: password,
+      password: password
     };
     Api.post("login", apiparams)
       .then((response) => {
         const token = response.data.token;
-        // 로컬스토리지에 token 값 저장
-        localStorage.setItem("token", token);
         this.props.login(token);
+        localStorage.setItem("token", token);
         const username = response.data.user.username;
         alert(`${username}님 반가워용! 메인으로 이동할게유`);
         history.push("/main");
@@ -39,7 +38,6 @@ export class Login extends Component {
       .catch((error) => console.log(error));
     // axios를 이용하여 로그인 정보를 전달하고 응답값을 받아온다.
   };
-
   render() {
     const { username, password } = this.state;
     return (
