@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import Api from "../utils/Api";
 import history from "../utils/history";
-import { thisExpression } from "@babel/types";
 
 export class UpdatePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       title: "",
-      contents: ""
+      contents: "",
     };
   }
   componentDidMount() {
@@ -18,17 +17,17 @@ export class UpdatePage extends Component {
         const { title, contents } = data;
         this.setState({
           title,
-          contents
+          contents,
         });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {});
   }
 
   onChangeValue = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -41,7 +40,7 @@ export class UpdatePage extends Component {
       const paramsApi = {
         _id: noteId,
         title,
-        contents
+        contents,
       };
       Api.put(`posts/${noteId}`, paramsApi)
         .then(() => {
