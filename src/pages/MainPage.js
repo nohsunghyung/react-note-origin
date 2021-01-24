@@ -1,12 +1,19 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import { observer, inject } from "mobx-react";
+import { toJS } from "mobx";
 
-export class MainPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
+@inject("noteStore")
+@observer
+class MainPage extends Component {
+  componentDidMount() {
+    const { noteStore } = this.props;
+    noteStore.fetchList();
   }
   render() {
+    const { noteStore } = this.props;
+    const { posts } = noteStore;
+    console.log("posts", toJS(posts));
     return (
       <div>
         <h1 className="page-header">학습노트 리스트</h1>

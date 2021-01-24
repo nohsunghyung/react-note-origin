@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <AppHeader />
+        <AppHeader logout={this.logout} />
         <Switch>
           <Route exact path={["/", "/main"]} component={MainPage}></Route>
           <Route

@@ -1,4 +1,5 @@
 import axios from "axios";
+import rootStore from "../store/RootStore";
 
 const Api = axios.create({
   baseURL: "http://localhost:3001/",
@@ -10,6 +11,7 @@ const Api = axios.create({
 Api.interceptors.request.use(
   function (config) {
     // 요청을 보내기 전에 수행할 일
+    config.headers.Authorization = rootStore.loginStore.token;
     return config;
   },
   function (error) {
